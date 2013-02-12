@@ -10,9 +10,6 @@ import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.XmlWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
-/**
- * This class replaces the "old" web.xml and is automatically scanned at the application startup
- */
 public class WebAppInitializer implements WebApplicationInitializer {
 
     @Override

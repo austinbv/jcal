@@ -15,6 +15,13 @@
         <jetty.port>8080</jetty.port>
     </properties>
 
+    <repositories>
+        <repository>
+            <id>googleapis</id>
+            <url>https://google-api-client-libraries.appspot.com/mavenrepo</url>
+        </repository>
+    </repositories>
+
     <profiles>
         <profile>
             <id>optimize</id>
@@ -46,7 +53,7 @@
                             <skip>false</skip>
                         </configuration>
                     </plugin>
-                    
+
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-war-plugin</artifactId>
@@ -72,6 +79,36 @@
             <groupId>org.resthub</groupId>
             <artifactId>resthub-web-server</artifactId>
             <version>${resthub.spring.stack.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.http-client</groupId>
+            <artifactId>google-http-client-jackson2</artifactId>
+            <version>1.13.1-beta</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.resthub</groupId>
+            <artifactId>resthub-web-client</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.apis</groupId>
+            <artifactId>google-api-services-oauth2</artifactId>
+            <version>v2-rev28-1.13.2-beta</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.apis</groupId>
+            <artifactId>google-api-services-calendar</artifactId>
+            <version>v3-rev25-1.13.2-beta</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.0-alpha4</version>
         </dependency>
 
         <dependency>
@@ -111,7 +148,7 @@
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
-                        
+
             <plugin>
                 <groupId>org.mortbay.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
@@ -127,6 +164,8 @@
                     <!-- To run the optimized version of the webapp -->
                     <!-- do a 'mvn package -Poptimize' and uncomment the following line -->
                     <!-- webAppSourceDirectory>${basedir}/target/${project.build.finalName}</webAppSourceDirectory -->
+                    <stopKey/>
+                    <stopPort/>
                 </configuration>
             </plugin>
         </plugins>

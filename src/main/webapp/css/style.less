@@ -1,0 +1,154 @@
+@import url('http://fonts.googleapis.com/css?family=Poiret+One|Ledger|Dosis');
+@background: #ece3d9;
+@dark-line: darken(@background, 20%);
+@less-dark-line: darken(@background, 10%);
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: @background;
+  overflow: hidden;
+}
+
+#header {
+  text-align: center;
+  font-family: 'Poiret One', cursive;
+  top: 0;
+  width: 100%;
+  background: lighten(hsl(0,0,0),20%);
+  height: 80px;
+  font-size: 40px;
+  color: #e4d7c9;
+  vertical-align: middle;
+}
+
+#header div {
+  display: inline;
+}
+#calendar-picker-wrap {
+  margin: auto;
+  padding: 5px;
+  height: 100px;
+  width: 200px;
+  overflow: hidden;
+  border: 1px solid;
+
+  &:after {
+    content: '\25bc';
+  }
+}
+
+#calendar-picker {
+  width: 450px;
+  border: none;
+  padding: 5px;
+  background: rgba(255, 255, 255, 0);
+  font-size: 40px;
+  color: #e4d7c9;
+  border-radius: 0px;
+  -webkit-appearance: none;
+}
+
+#calendar {
+  position: relative;
+//  background: @background;
+  background: #e4d7c9;
+
+  #hours-list {
+    font-family: 'Dosis', sans-serif;
+
+    box-sizing: border-box;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    border: black 1px solid;
+    width: 50px;
+    
+    li {
+      box-sizing: border-box;
+      border-top: @dark-line 1px solid;
+      border-bottom: @dark-line 1px solid;
+      position: relative;
+      height: 11.2%;
+      text-align: right;
+      padding-right: 4px;
+
+      /*span {*/
+        /*position: absolute;*/
+        /*bottom: -6px;*/
+        /*right: 3px;*/
+      /*}*/
+    }
+  }
+
+  #hours-cells {
+    box-sizing: border-box;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 50px;
+    right: 0px;
+
+    li {
+      box-sizing: border-box;
+      height: 11.2%;
+      border-left: none;
+      border-top: 1px solid @dark-line;
+      border-bottom: 1px solid @dark-line;
+      background-color: @background;
+
+      &:first-of-type {
+        border-left: none;
+      }
+
+      li {
+        box-sizing: border-box;
+        height: 25%;
+        border-left: none;
+        border-right: none;
+        border-color: @less-dark-line;
+      }
+      li:first-of-type, li:last-of-type{
+        border: none
+      }
+    }
+  }
+}
+
+.meeting {
+  padding-left: 10px;
+  left: 5%;
+  right: 5%;
+  box-sizing: border-box;
+  color: black;
+  border: 1px solid black;
+  background: rgba(47, 201, 220, 0.2);
+}
+
+.clear {
+  clear: both;
+}
+
+#time-line {
+  position: absolute;
+  left: 50px;
+  right: 0px;
+  border: 1px solid red;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.0);
+
+  &:before {
+    content: '';
+    position: absolute;
+    box-sizing: border-box;
+    left: -10px;
+    top: -8px;
+    height: 15px;
+    width: 15px;
+    border-radius: 20px;
+    background: darken(@background, 0);
+    border: 2px solid lighten(hsl(0,0,0),20%);
+  }
+}
