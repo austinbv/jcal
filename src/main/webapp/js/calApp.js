@@ -153,8 +153,7 @@
       },
 
       parse: function (results) {
-        debugger
-//        results = JSON.parse(results);
+        results = JSON.parse(results);
         if (results.error) {
           CalApp.Helpers.save_state($('#calendar-picker'));
         }
