@@ -4,11 +4,11 @@ import org.h2.server.web.WebServlet;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.XmlWebApplicationContext;
+import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.DispatcherServlet;
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRegistration;
+import javax.servlet.*;
+import java.util.EnumSet;
 
 public class WebAppInitializer implements WebApplicationInitializer {
 
@@ -23,9 +23,11 @@ public class WebAppInitializer implements WebApplicationInitializer {
     dispatcher.setLoadOnStartup(1);
     dispatcher.addMapping("/*");
 
+    FilterRegistration.Dynamic securityFilter = servletContext.addFilter("springSecurityFilterChain", new DelegatingFilterProxy());
+    securityFilter.addMappingForUrlPatterns(EnumSet.allOf(DispatcherType.class), true, "/*");
+
     servletContext.addListener(new ContextLoaderListener(appContext));
 
-    //Database Console for managing the app's database (TODO : profile)
     ServletRegistration.Dynamic h2Servlet = servletContext.addServlet("h2console", WebServlet.class);
     h2Servlet.setLoadOnStartup(2);
     h2Servlet.addMapping("/console/database/*");
