@@ -9,18 +9,18 @@
 
   <context:component-scan base-package="calendar"/>
   <!-- HTTP basic authentication in Spring Security -->
-  <security:http>
-    <security:intercept-url pattern="/" access="ROLE_USER"/>
-    <security:http-basic/>
-  </security:http>
+  <!--<security:http>-->
+    <!--<security:intercept-url pattern="/" access="ROLE_USER"/>-->
+    <!--<security:http-basic/>-->
+  <!--</security:http>-->
 
-  <security:authentication-manager>
-    <security:authentication-provider>
-      <security:user-service>
-        <security:user name="avance" password="1234" authorities="ROLE_USER"/>
-      </security:user-service>
-    </security:authentication-provider>
-  </security:authentication-manager>
+  <!--<security:authentication-manager>-->
+    <!--<security:authentication-provider>-->
+      <!--<security:user-service>-->
+        <!--<security:user name="avance" password="1234" authorities="ROLE_USER"/>-->
+      <!--</security:user-service>-->
+    <!--</security:authentication-provider>-->
+  <!--</security:authentication-manager>-->
 
   <mvc:annotation-driven/>
 </beans>

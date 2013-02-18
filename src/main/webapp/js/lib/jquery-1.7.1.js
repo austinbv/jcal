@@ -3023,7 +3023,7 @@
       }
     },
 
-    // Events that are safe to short-circuit if no handlers are attached.
+    // Event that are safe to short-circuit if no handlers are attached.
     // Native DOM events should not be added, they may have inline handlers.
     customEvent: {
       "getData": true,
@@ -3037,7 +3037,7 @@
         return;
       }
 
-      // Event object or event type
+      // Item object or event type
       var type = event.type || event,
         namespaces = [],
         cache, exclusive, i, cur, old, ontype, special, handle, eventPath, bubbleType;
@@ -3065,9 +3065,9 @@
         return;
       }
 
-      // Caller can pass in an Event, Object, or just an event type string
+      // Caller can pass in an Item, Object, or just an event type string
       event = typeof event === "object" ?
-        // jQuery.Event object
+        // jQuery.Item object
         event[ jQuery.expando ] ? event :
           // Object literal
           new jQuery.Event(type, event) :
@@ -3184,7 +3184,7 @@
 
     dispatch: function (event) {
 
-      // Make a writable jQuery.Event from the native event object
+      // Make a writable jQuery.Item from the native event object
       event = jQuery.event.fix(event || window.event);
 
       var handlers = ( (jQuery._data(this, "events") || {} )[ event.type ] || []),
@@ -3194,7 +3194,7 @@
         handlerQueue = [],
         i, j, cur, jqcur, ret, selMatch, matched, matches, handleObj, sel, related;
 
-      // Use the fix-ed jQuery.Event rather than the (read-only) native event
+      // Use the fix-ed jQuery.Item rather than the (read-only) native event
       args[0] = event;
       event.delegateTarget = this;
 
@@ -3432,17 +3432,17 @@
       return new jQuery.Event(src, props);
     }
 
-    // Event object
+    // Item object
     if (src && src.type) {
       this.originalEvent = src;
       this.type = src.type;
 
-      // Events bubbling up the document may have been marked as prevented
+      // Event bubbling up the document may have been marked as prevented
       // by a handler lower down the tree; reflect the correct value.
       this.isDefaultPrevented = ( src.defaultPrevented || src.returnValue === false ||
         src.getPreventDefault && src.getPreventDefault() ) ? returnTrue : returnFalse;
 
-      // Event type
+      // Item type
     } else {
       this.type = src;
     }
@@ -3467,8 +3467,8 @@
     return true;
   }
 
-// jQuery.Event is based on DOM3 Events as specified by the ECMAScript Language Binding
-// http://www.w3.org/TR/2003/WD-DOM-Level-3-Events-20030331/ecma-script-binding.html
+// jQuery.Item is based on DOM3 Event as specified by the ECMAScript Language Binding
+// http://www.w3.org/TR/2003/WD-DOM-Level-3-Event-20030331/ecma-script-binding.html
   jQuery.Event.prototype = {
     preventDefault: function () {
       this.isDefaultPrevented = returnTrue;
@@ -3721,7 +3721,7 @@
     },
     off: function (types, selector, fn) {
       if (types && types.preventDefault && types.handleObj) {
-        // ( event )  dispatched jQuery.Event
+        // ( event )  dispatched jQuery.Item
         var handleObj = types.handleObj;
         jQuery(types.delegateTarget).off(
           handleObj.namespace ? handleObj.type + "." + handleObj.namespace : handleObj.type,
@@ -6074,7 +6074,7 @@
       dest.defaultValue = src.defaultValue;
     }
 
-    // Event data gets referenced instead of copied if the expando
+    // Item data gets referenced instead of copied if the expando
     // gets copied too
     dest.removeAttribute(jQuery.expando);
   }

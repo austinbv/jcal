@@ -68,7 +68,7 @@
   // form param named `model`.
   Backbone.emulateJSON = false;
 
-  // Backbone.Events
+  // Backbone.Event
   // -----------------
 
   // A module that can be mixed in to *any object* in order to provide it with
@@ -76,7 +76,7 @@
   // to an event; trigger`-ing an event fires all callbacks in succession.
   //
   //     var object = {};
-  //     _.extend(object, Backbone.Events);
+  //     _.extend(object, Backbone.Event);
   //     object.on('expand', function(){ alert('expanded'); });
   //     object.trigger('expand');
   //
