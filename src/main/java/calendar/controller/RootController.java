@@ -1,7 +1,5 @@
 package calendar.controller;
 
-import calendar.model.Event;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.resthub.web.Client;
 import org.resthub.web.Http;
@@ -11,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.UriUtils;
 
-import java.io.IOException;
+import javax.annotation.Resource;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
@@ -47,7 +45,7 @@ public class RootController {
   public
   @ResponseBody
   String details(@RequestParam("calendar") String calendar, @RequestParam("today") String today, @RequestParam("tomorrow") String tomorrow) {
-      String body = httpClient.url("https://www.googleapis.com/calendar/v3/calendars/" + calendar + "/events")
+    String body = httpClient.url("https://www.googleapis.com/calendar/v3/calendars/" + calendar + "/events")
       .setQueryParameter("timeMax", tomorrow)
       .setQueryParameter("timeMin", today)
       .setQueryParameter("access_token", getAccessToken())
